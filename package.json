@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
+    "radium": "^0.19.1",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
   },
   "devDependencies": {
+    "eslint-config-airbnb": "^15.0.2",
     "react-scripts": "1.0.10"
   },
   "scripts": {
