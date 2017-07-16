@@ -31,7 +31,6 @@ class MyCitySelect extends Component {
 }
 
 class App extends Component {
-
   render() {
     return (
       <div className="App" style={{ padding: '20px' }}>

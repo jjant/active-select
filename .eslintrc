@@ -25,6 +25,7 @@
     "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/no-noninteractive-element-interactions": 0,
     "no-unused-expressions": [2, { "allowShortCircuit": true }],
+    "react/no-multi-comp": 0,
   },
   "globals": {
     "fetch": 0,
