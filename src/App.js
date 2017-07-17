@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
-import ActiveSelect from './select/ActiveSelect';
+import ActiveSelect from 'components/ActiveSelect/ActiveSelect';
 
 const availableOptions = [
   { value: '1', label: 'Miami' },
