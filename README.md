@@ -1,6 +1,9 @@
 # ActiveSelect
-## Installation
 
+## Live demo
+Feel free to play around with ActiveSelect here: https://jjant.github.io/active-select
+
+## Installation
 Using [yarn](https://yarnpkg.com/lang/en/):
 
     $ yarn add active-select
@@ -19,9 +22,7 @@ var ActiveSelect = require('active-select');
 ```
 
 ## Usage
-
 ### Minimal example
-
 ```javascript
 import React, { Component } from 'react';
 import ActiveSelect from 'active-select';
@@ -61,26 +62,22 @@ class App extends Component {
 }
 
 export default App;
-
 ```
 
 ## API
-
 ### Props
 ActiveSelect expects the following props to be passed:
 * `availableOptions`: (**PropTypes.arrayOf(PropTypes.shape({ value: PropTypes.string, label: PropTypes.string })).isRequired**) an array of the options to be rendered.
 * `focused`: (**PropTypes.bool.isRequired**) value indicating if the component is currently focused.
 * `selectedOptions`: (**PropTypes.arrayOf(PropTypes.shape({ value: PropTypes.string, label: PropTypes.string })).isRequired**) an array containing the currently selected options.
-* `onChange`: (**PropTypes.func.isRequired**) function responsible of properly updating the state for the component to work. You'll usually want to pass a function like the following:
+* `onChange`: (**PropTypes.func.isRequired**) function responsible for properly updating the state for the component to work. You'll usually want to pass a function like the following:
 ```javascript
 onChange = selectState => this.setState(selectState)
 ```
 
-
 ActiveSelect's extensive API allows you to customise every part of the component, this includes the container component, the select component, the selected option component and the available option component.
 
-
-##### Customising Select component
+#### Customising Select component
 You can pass your custom select component through ActiveSelect's `selectComponent` prop.
 ActiveSelect will inject the following props to the Select component:
 * `focused`: (**PropTypes.bool**) indicates if select tag is currently focused.
@@ -89,13 +86,13 @@ ActiveSelect will inject the following props to the Select component:
 * `selectedOptions`: (**PropTypes.arrayOf(PropTypes.element)**) Array of all selected options.
 * `availableOptions`: (**PropTypes.arrayOf(PropTypes.element)**) Array of all the available options.
 
-##### Customising SelectedOption component
+#### Customising SelectedOption component
 You can pass your custom select component through ActiveSelect's `selectedOptionComponent` prop.
 ActiveSelect will inject the following props to the SelectedOption component:
 * `option`: (**PropTypes.shape({ value: PropTypes.string, label: PropTypes.string })**) Option object.
 * `unselectOption`: (**PropTypes.func**) unselects this option when called.
 
-##### Customising AvailableOption component
+#### Customising AvailableOption component
 You can pass your custom select component through ActiveSelect's `availableOptionComponent` prop.
 ActiveSelect will inject the following props to the AvailableOption component:
 * `option`: (**PropTypes.shape({ value: PropTypes.string, label: PropTypes.string })**) Option object.
@@ -164,3 +161,6 @@ class App extends React.Component {
   }
 }
 ```
+
+## Contributing
+See the TODO.md file for missing features, and just throw in a PR or submit an issue if something breaks.
