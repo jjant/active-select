@@ -1,28 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SearchInput from './SearchInput';
 
-export function defaultSearchFunction({ searchArguments = {}, options }) {
+export function defaultSearchFunction({ searchParams = {}, options }) {
   return options;
 };
 
-export function textSearchFunction({ searchArguments, options }) {
-  const { searchText } = searchArguments;
-  const newOptions = options.filter(option => option.label.include(searchText));
+export function textSearchFunction({ searchParams, options }) {
+  const { text = "" } = searchParams;
+  const newOptions = options.filter(option =>
+    option.label.toLowerCase().includes(text.toLowerCase())
+  );
   return newOptions;
 };
 
-const DefaultSearch = ({ searchParams, changeSearchParams }) => (
-  <SearchInput
-    type="text"
-    value={searchParams.text || ""}
-    onChange={e => changeSearchParams({ text: e.target.value })}
-  />
-);
+class DefaultSearch extends Component {
+  shouldComponentUpdate(nextProps) {
+    return this.props == nextProps;
+  }
+  handleChange = e => this.props.setSearchParams({ text: e.target.value });
+
+  render() {
+    return (
+      <SearchInput
+        type="text"
+        value={this.props.searchParams.text}
+        onChange={this.handleChange}
+      />
+    );
+  }
+}
 
 DefaultSearch.propTypes = {
-  state: PropTypes.shape({}).isRequired,
-  changeSearchParams: PropTypes.func.isRequired,
+  searchParams: PropTypes.shape({}).isRequired,
+  setSearchParams: PropTypes.func.isRequired,
 };
 
 export default DefaultSearch;

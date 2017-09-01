@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import DefaultSelectedOption from '../DefaultSelectedOption/DefaultSelectedOption';
 import DefaultAvailableOption from '../DefaultAvailableOption/DefaultAvailableOption';
 import DefaultSelect from '../DefaultSelect/DefaultSelect';
-import DefaultSearch from '../DefaultSearch/DefaultSearch';
+import DefaultSearch, { defaultSearchFunction, textSearchFunction } from '../DefaultSearch/DefaultSearch';
 import Layout from './Layout';
 
 class ActiveSelect extends Component {
@@ -28,6 +28,19 @@ class ActiveSelect extends Component {
     });
   }
 
+  getAvailableOptions = () => {
+    return this.getSearchFunction()({ searchParams: this.props.searchParams, options: this.props.availableOptions });
+  }
+
+
+  getSearchFunction = () => {
+    return this.props.searchable ? textSearchFunction : defaultSearchFunction;
+  }
+
+  getSearchComponent = () => {
+    return this.props.searchable ? DefaultSearch : () => null;
+  }
+
   render() {
     return (
       <Layout
@@ -36,10 +49,11 @@ class ActiveSelect extends Component {
         selectOption={this.selectOption}
         unselectOption={this.unselectOption}
         focused={this.props.focused}
-        searchText={this.props.searchText}
+        searchParams={this.props.searchParams}
+        setSearchParams={this.setSearchParams}
         selectedOptions={this.props.selectedOptions}
-        availableOptions={this.props.availableOptions}
-        searchComponent={this.props.searchComponent}
+        availableOptions={this.getAvailableOptions()}
+        searchComponent={this.getSearchComponent()}
         selectComponent={this.props.selectComponent}
         selectedOptionComponent={this.props.selectedOptionComponent}
         availableOptionComponent={this.props.availableOptionComponent}
@@ -58,22 +72,24 @@ ActiveSelect.propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
   })).isRequired,
-  searchText: PropTypes.string,
   focused: PropTypes.bool,
   selectComponent: PropTypes.func,
   availableOptionComponent: PropTypes.func,
   selectedOptionComponent: PropTypes.func,
   searchComponent: PropTypes.func,
+  searchParams: PropTypes.shape({}),
+  searchable: PropTypes.bool,
 };
 
 ActiveSelect.defaultProps = {
   selectedOptions: [],
-  searchText: '',
+  searchParams: {},
   focused: false,
   selectComponent: DefaultSelect,
   availableOptionComponent: DefaultAvailableOption,
   selectedOptionComponent: DefaultSelectedOption,
   searchComponent: DefaultSearch,
+  searchable: false,
 };
 
 export default ActiveSelect;

@@ -26,14 +26,26 @@ class Layout extends Component {
     ));
   };
 
+  searchComponent = props => {
+    const Search = this.props.searchComponent;
+    return (
+      <Search
+        searchParams={this.props.searchParams}
+        setSearchParams={this.props.setSearchParams}
+        {...props}
+      />
+    );
+  }
+
   render() {
     const Select = this.props.selectComponent;
+
     return (
       <Select
         focused={this.props.focused}
         setFocus={this.props.setFocus}
         toggleFocus={this.props.toggleFocus}
-        searchComponent={this.props.searchComponent}
+        searchComponent={this.searchComponent}
         selectedOptions={this.renderSelectedOptions()}
         availableOptions={this.renderAvailableOptions()}
       />
