@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ActiveSelect from './components/ActiveSelect/ActiveSelect';
 
-const availableOptions = [
+const options = [
   { value: '1', label: 'Miami' },
   { value: '2', label: 'New York' },
   { value: '3', label: 'Seattle' },
@@ -21,9 +21,13 @@ class MyCitySelect extends Component {
     return (
       <ActiveSelect
         onChange={this.onChange}
-        availableOptions={availableOptions}
+        options={this.props.options}
         focused={this.state.focused}
+        multi={this.props.multi}
         selectedOptions={this.state.selectedOptions}
+        searchParams={this.state.searchParams}
+        searchable={this.props.searchable}
+        noOptionsRemainingPlaceholder={this.props.noOptionsRemainingPlaceholder}
       />
     );
   }
@@ -32,9 +36,12 @@ class MyCitySelect extends Component {
 class App extends Component {
   render() {
     return (
-      <div className="App" style={{ padding: '20px' }}>
-        <MyCitySelect />
-      </div>
+      <MyCitySelect
+        multi
+        searchable
+        options={options}
+        noOptionsRemainingPlaceholder="verga"
+      />
     );
   }
 }

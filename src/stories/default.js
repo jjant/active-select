@@ -23,11 +23,13 @@ class MyCitySelect extends Component {
     return (
       <ActiveSelect
         onChange={this.onChange}
-        availableOptions={this.props.availableOptions}
+        options={this.props.options}
         focused={this.state.focused}
+        multi={this.props.multi}
         selectedOptions={this.state.selectedOptions}
         searchParams={this.state.searchParams}
         searchable={this.props.searchable}
+        noOptionsRemainingPlaceholder={this.props.noOptionsRemainingPlaceholder}
       />
     );
   }

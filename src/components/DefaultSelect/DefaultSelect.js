@@ -1,15 +1,17 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import SelectedOptionContainer from './SelectContainer';
 import AvailableOptionsContainer from './AvailableOptionsContainer';
 import ArrowButton from './ArrowButton'
-import './DefaultSelect.css';
 
-const styles = {
-  container: {
-    width: '400px',
-  },
-};
+const Container = styled.div`
+  width: 400px;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  * {
+    box-sizing: border-box;
+  }
+`;
 
 class DefaultSelect extends PureComponent {
   state = {
@@ -45,11 +47,9 @@ class DefaultSelect extends PureComponent {
     } = this.props;
 
     return (
-      <div
-        ref={this.setWrapperRef}
+      <Container
+        innerRef={this.setWrapperRef}
         onFocus={this.handleClick}
-        style={styles.container}
-        className="default-select-container"
       >
         <SelectedOptionContainer focused={this.props.focused}>
           {selectedOptions}
@@ -57,10 +57,10 @@ class DefaultSelect extends PureComponent {
           <ArrowButton focused={focused} onClick={toggleFocus} />
         </SelectedOptionContainer>
         {focused &&
-          <AvailableOptionsContainer>
+          <AvailableOptionsContainer noOptionsRemainingPlaceholder={this.props.noOptionsRemainingPlaceholder}>
             {availableOptions}
           </AvailableOptionsContainer>}
-      </div>
+      </Container>
     );
   }
 }
@@ -72,6 +72,7 @@ DefaultSelect.propTypes = {
   selectedOptions: PropTypes.arrayOf(PropTypes.element).isRequired,
   availableOptions: PropTypes.arrayOf(PropTypes.element).isRequired,
   searchComponent: PropTypes.func.isRequired,
+  noOptionsRemainingPlaceholder: PropTypes.string.isRequired,
 };
 
 export default DefaultSelect;

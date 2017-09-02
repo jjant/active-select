@@ -6,6 +6,7 @@ class Layout extends Component {
   renderAvailableOptions = () => {
     const AvailableOption = this.props.availableOptionComponent;
     const options = difference(this.props.availableOptions, this.props.selectedOptions);
+
     return options.map(option => (
       <AvailableOption
         option={option}
@@ -17,6 +18,7 @@ class Layout extends Component {
 
   renderSelectedOptions = () => {
     const SelectedOption = this.props.selectedOptionComponent;
+
     return this.props.selectedOptions.map(option => (
       <SelectedOption
         option={option}
@@ -28,6 +30,7 @@ class Layout extends Component {
 
   searchComponent = props => {
     const Search = this.props.searchComponent;
+
     return (
       <Search
         searchParams={this.props.searchParams}
@@ -48,6 +51,7 @@ class Layout extends Component {
         searchComponent={this.searchComponent}
         selectedOptions={this.renderSelectedOptions()}
         availableOptions={this.renderAvailableOptions()}
+        noOptionsRemainingPlaceholder={this.props.noOptionsRemainingPlaceholder}
       />
     );
   }
@@ -71,6 +75,7 @@ Layout.propTypes = {
   unselectOption: PropTypes.func.isRequired,
   toggleFocus: PropTypes.func.isRequired,
   setFocus: PropTypes.func.isRequired,
+  noOptionsRemainingPlaceholder: PropTypes.string.isRequired,
 };
 
 export default Layout;

@@ -15,16 +15,15 @@ export function textSearchFunction({ searchParams, options }) {
 };
 
 class DefaultSearch extends Component {
-  shouldComponentUpdate(nextProps) {
-    return this.props == nextProps;
-  }
   handleChange = e => this.props.setSearchParams({ text: e.target.value });
 
   render() {
+    const { text = "" } = this.props.searchParams;
+
     return (
       <SearchInput
         type="text"
-        value={this.props.searchParams.text}
+        value={text}
         onChange={this.handleChange}
       />
     );

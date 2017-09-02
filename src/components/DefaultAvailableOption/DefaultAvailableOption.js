@@ -1,23 +1,26 @@
 import React from 'react';
 import Radium from 'radium';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const style = {
-  borderBottom: '1px solid lightgray',
-  height: '30px',
-  lineHeight: '30px',
-  paddingLeft: '10px',
-  fontSize: '12px',
-  textAlign: 'left',
-  ':hover': {
-    background: '#ECEFF4',
-  },
-};
+const Container = styled.div`
+  height: 30px;
+  line-height: 30px;
+  padding-left: 10px;
+  font-size: 12px;
+  text-align: left;
+  :hover {
+    background: #ECEFF4;
+  }
+  :not(:last-child) {
+    border-bottom: 1px solid lightgray;
+  }
+`;
 
 const DefaultAvailableOption = ({ option, selectOption }) => (
-  <div style={style} onClick={selectOption}>
+  <Container onClick={selectOption}>
     {option.label}
-  </div>
+  </Container>
 );
 
 DefaultAvailableOption.propTypes = {
